@@ -1,0 +1,70 @@
+// Schema do banco de dados (PostgreSQL via Prisma)
+// Documentação: https://www.prisma.io/docs
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Usuário da aplicação
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String   // hash da senha (bcrypt) — nunca texto puro
+  createdAt DateTime @default(now())
+
+  boards    Board[]
+
+  @@map("users")
+}
+
+// Quadro (ex: "Projeto X", "Tarefas pessoais")
+model Board {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  lists     List[]
+
+  @@map("boards")
+  @@index([ownerId])
+}
+
+// Lista / coluna (ex: "To Do", "Doing", "Done")
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  position  Int      // ordem da lista dentro do board (0, 1, 2...)
+  createdAt DateTime @default(now())
+
+  boardId   String
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  cards     Card[]
+
+  @@map("lists")
+  @@index([boardId])
+}
+
+// Card / tarefa
+model Card {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  position    Int      // ordem do card dentro da lista (0, 1, 2...)
+  createdAt   DateTime @default(now())
+
+  listId      String
+  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@map("cards")
+  @@index([listId])
+}

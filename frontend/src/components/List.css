@@ -1,0 +1,98 @@
+.kanban-list {
+  background: #F1EFE6;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  width: 270px;
+  min-width: 270px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 160px);
+}
+
+.kanban-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.kanban-list-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.kanban-list-delete {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.kanban-list-delete:hover {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+.kanban-list-cards {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 20px;
+}
+
+.kanban-add-card-trigger {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 8px 6px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.kanban-add-card-trigger:hover {
+  background: rgba(26, 26, 26, 0.05);
+  color: var(--color-text);
+}
+
+.kanban-add-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanban-add-card-form textarea {
+  resize: none;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+}
+
+.kanban-add-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.kanban-add-card-actions button[type="submit"] {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.kanban-add-card-actions button[type="button"] {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
