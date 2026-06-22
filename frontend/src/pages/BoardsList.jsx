@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchBoards, createBoard, deleteBoard } from '../services/boardService';
 import { useAuth } from '../context/useAuth';
+import ThemeToggle from '../components/ThemeToggle';
 import './BoardsList.css';
 
 export default function BoardsList() {
@@ -69,6 +70,7 @@ export default function BoardsList() {
       <header className="boards-header">
         <h1>Meus quadros</h1>
         <div className="boards-header-actions">
+          <ThemeToggle />
           <span className="boards-user-name">Olá, {user?.name}</span>
           <button className="boards-logout-btn" onClick={handleLogout}>Sair</button>
         </div>

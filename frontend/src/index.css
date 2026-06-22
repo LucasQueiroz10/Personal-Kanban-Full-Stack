@@ -3,9 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  /* Paleta: fundo quase-papel, texto quase-preto, accent petróleo + mostarda */
+  /* Paleta (tema claro): fundo quase-papel, texto quase-preto, accent petróleo + mostarda */
   --color-bg: #FAFAF8;
   --color-surface: #FFFFFF;
+  --color-surface-alt: #F1EFE6;
   --color-text: #1A1A1A;
   --color-text-muted: #6B6B66;
   --color-border: #E4E2DA;
@@ -25,6 +26,31 @@
 
   --shadow-card: 0 1px 2px rgba(26, 26, 26, 0.06), 0 1px 1px rgba(26, 26, 26, 0.04);
   --shadow-card-hover: 0 4px 12px rgba(26, 26, 26, 0.10), 0 2px 4px rgba(26, 26, 26, 0.06);
+}
+
+/* Paleta (tema escuro): aplicada quando <html data-theme="dark"> */
+[data-theme='dark'] {
+  --color-bg: #16181A;
+  --color-surface: #1F2225;
+  --color-surface-alt: #262A2E;
+  --color-text: #EDEDEA;
+  --color-text-muted: #9B9B95;
+  --color-border: #34383C;
+
+  --color-primary: #4D9A96;
+  --color-primary-hover: #5FB0AC;
+  --color-accent: #E5B94B;
+
+  --color-danger: #E08177;
+  --color-danger-bg: #3A2422;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 4px 14px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Transição suave ao alternar entre os temas */
+body, .kanban-list, .kanban-card, .board-card, .auth-card {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 * {

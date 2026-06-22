@@ -11,6 +11,7 @@ import { fetchBoardById } from '../services/boardService';
 import { createList, deleteList } from '../services/listService';
 import { createCard, deleteCard, moveCard, updateCard } from '../services/cardService';
 import List from '../components/List';
+import ThemeToggle from '../components/ThemeToggle';
 import './BoardPage.css';
 
 export default function BoardPage() {
@@ -181,8 +182,11 @@ export default function BoardPage() {
   return (
     <div className="board-page">
       <header className="board-page-header">
-        <Link to="/boards" className="board-page-back">← Meus quadros</Link>
-        <h1>{board.title}</h1>
+        <div>
+          <Link to="/boards" className="board-page-back">← Meus quadros</Link>
+          <h1>{board.title}</h1>
+        </div>
+        <ThemeToggle />
       </header>
 
       {error && <p className="board-page-error" role="alert">{error}</p>}

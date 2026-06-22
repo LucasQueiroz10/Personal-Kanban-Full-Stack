@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
+import ThemeToggle from '../components/ThemeToggle';
 import './AuthPages.css';
 
 export default function Login() {
@@ -30,6 +31,9 @@ export default function Login() {
 
   return (
     <div className="auth-page">
+      <div className="auth-page-theme-toggle">
+        <ThemeToggle />
+      </div>
       <form className="auth-card" onSubmit={handleSubmit}>
         <h1 className="auth-title">Entrar</h1>
         <p className="auth-subtitle">Acesse seus quadros de kanban.</p>

@@ -1,4 +1,5 @@
 .auth-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -8,6 +9,12 @@
     radial-gradient(circle at 15% 20%, rgba(44, 95, 93, 0.06), transparent 40%),
     radial-gradient(circle at 85% 80%, rgba(212, 160, 36, 0.08), transparent 40%),
     var(--color-bg);
+}
+
+.auth-page-theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .auth-card {

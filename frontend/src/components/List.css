@@ -1,5 +1,5 @@
 .kanban-list {
-  background: #F1EFE6;
+  background: var(--color-surface-alt);
   border-radius: var(--radius-md);
   padding: 14px;
   width: 270px;
