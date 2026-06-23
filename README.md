@@ -1,3 +1,5 @@
+## Lucas Queiroz Costa
+
 # Kanban App
 
 Aplicação de quadro Kanban (estilo Trello) full stack, construída como projeto de portfólio.
