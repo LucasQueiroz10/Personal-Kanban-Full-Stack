@@ -2,7 +2,7 @@
 
 # Kanban App
 
-Aplicação de quadro Kanban (estilo Trello) full stack, construída como projeto de portfólio.
+Aplicação de quadro Kanban (estilo Trello) full stack, construída como projeto de portfólio / faculdade.
 
 ## Stack
 
