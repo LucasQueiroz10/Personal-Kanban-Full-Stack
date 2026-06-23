@@ -11,34 +11,43 @@ export default function Card({ card, onDelete, onEdit }) {
     data: { type: 'card', card },
   });
 
+  // IMPORTANTE: o elemento com setNodeRef é o único que pode ter "transform" e
+  // "transition" no estilo — é nele que o @dnd-kit calcula a posição durante o
+  // arrasto. Qualquer outro transform (como a rotação "post-it") aplicado neste
+  // mesmo elemento entra em conflito com esse cálculo e faz o card "não acompanhar"
+  // o mouse. Por isso a rotação decorativa fica num <div> interno separado,
+  // controlado só pelo CSS (classe .kanban-card-inner), nunca por este estilo aqui.
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.4 : 1,
   };
 
   return (
     <div
       ref={setNodeRef}
       style={style}
-      className="kanban-card"
+      className="kanban-card-wrapper"
       {...attributes}
       {...listeners}
-      onDoubleClick={() => onEdit(card)}
     >
-      <p className="kanban-card-title">{card.title}</p>
-      {card.description && <p className="kanban-card-description">{card.description}</p>}
-      <button
-        className="kanban-card-delete"
-        onClick={(e) => {
-          e.stopPropagation();
-          onDelete(card.id);
-        }}
-        aria-label={`Excluir card ${card.title}`}
-        title="Excluir card"
+      <div
+        className={`kanban-card ${isDragging ? 'kanban-card--dragging' : ''}`}
+        onDoubleClick={() => onEdit(card)}
       >
-        ×
-      </button>
+        <p className="kanban-card-title">{card.title}</p>
+        {card.description && <p className="kanban-card-description">{card.description}</p>}
+        <button
+          className="kanban-card-delete"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(card.id);
+          }}
+          aria-label={`Excluir card ${card.title}`}
+          title="Excluir card"
+        >
+          ×
+        </button>
+      </div>
     </div>
   );
 }

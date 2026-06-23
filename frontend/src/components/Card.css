@@ -1,28 +1,53 @@
+/* O wrapper externo é o elemento controlado pelo @dnd-kit (transform/transition
+   de posição). Ele não deve ter transform próprio nem rotação — só margem. */
+.kanban-card-wrapper {
+  margin-bottom: 10px;
+  cursor: grab;
+}
+
+.kanban-card-wrapper:active {
+  cursor: grabbing;
+}
+
+/* O card visual em si: aqui sim aplicamos rotação, sombra e animações,
+   sem interferir no cálculo de posição do drag-and-drop. */
 .kanban-card {
   position: relative;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 12px 30px 12px 14px;
-  margin-bottom: 8px;
-  cursor: grab;
   box-shadow: var(--shadow-card);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transition: box-shadow 0.18s var(--ease-smooth), transform 0.18s var(--ease-bounce);
+  animation: pop-in 0.22s var(--ease-bounce);
 }
 
-.kanban-card:hover {
+/* Leve rotação alternada, fixa por posição, para um efeito "post-it desalinhado". */
+.kanban-card-wrapper:nth-child(odd) .kanban-card {
+  transform: rotate(-0.6deg);
+}
+
+.kanban-card-wrapper:nth-child(even) .kanban-card {
+  transform: rotate(0.6deg);
+}
+
+.kanban-card-wrapper:hover .kanban-card {
   box-shadow: var(--shadow-card-hover);
-  transform: rotate(-0.4deg);
+  transform: rotate(0deg) translateY(-2px) scale(1.015);
+  z-index: 1;
 }
 
-.kanban-card:active {
-  cursor: grabbing;
+/* Enquanto o card está sendo arrastado, o @dnd-kit deixa um "fantasma" no
+   lugar original com opacidade reduzida — sem rotação, para não confundir
+   visualmente com o card real que está sendo movido pelo cursor. */
+.kanban-card--dragging {
+  opacity: 0.4;
+  transform: none;
 }
 
 .kanban-card-title {
   margin: 0;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -45,14 +70,15 @@
   padding: 2px 6px;
   border-radius: 4px;
   opacity: 0;
-  transition: opacity 0.1s ease;
+  transition: opacity 0.12s ease, background-color 0.15s ease, color 0.15s ease, transform 0.15s var(--ease-bounce);
 }
 
-.kanban-card:hover .kanban-card-delete {
+.kanban-card-wrapper:hover .kanban-card-delete {
   opacity: 1;
 }
 
 .kanban-card-delete:hover {
   color: var(--color-danger);
   background: var(--color-danger-bg);
+  transform: rotate(90deg) scale(1.1);
 }

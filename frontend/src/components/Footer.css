@@ -5,13 +5,14 @@
   justify-content: space-between;
   gap: 12px;
   padding: 18px 32px;
-  border-top: 1px solid var(--color-border);
+  border-top: 1.5px solid var(--color-border);
   font-size: 0.8rem;
   color: var(--color-text-muted);
 }
 
 .app-footer-text {
   margin: 0;
+  font-weight: 600;
 }
 
 .app-footer-links {
@@ -22,7 +23,8 @@
 .app-footer-links a {
   color: var(--color-text-muted);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color 0.15s ease;
 }
 
 .app-footer-links a:hover {

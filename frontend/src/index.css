@@ -3,49 +3,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  /* Paleta (tema claro): fundo quase-papel, texto quase-preto, accent petróleo + mostarda */
-  --color-bg: #FAFAF8;
+  /* Paleta (tema claro): fundo lavanda suave, accent roxo-violeta vibrante */
+  --color-bg: #EEEAFB;
   --color-surface: #FFFFFF;
-  --color-surface-alt: #F1EFE6;
-  --color-text: #1A1A1A;
-  --color-text-muted: #6B6B66;
-  --color-border: #E4E2DA;
+  --color-surface-alt: #F4F1FC;
+  --color-text: #2B2640;
+  --color-text-muted: #756E91;
+  --color-border: #DCD4F2;
 
-  --color-primary: #2C5F5D;
-  --color-primary-hover: #234B49;
-  --color-accent: #D4A024;
+  --color-primary: #7C5CFC;
+  --color-primary-hover: #6A47F2;
+  --color-accent: #FFC857;
 
-  --color-danger: #B3473C;
-  --color-danger-bg: #FBEAE7;
+  --color-danger: #E25563;
+  --color-danger-bg: #FCE5E8;
+
+  /* Cores de identidade das listas: rotacionam pela ordem (ver --list-color-N) */
+  --list-color-1: #FF8B6B;
+  --list-color-2: #36C5C0;
+  --list-color-3: #FFC857;
+  --list-color-4: #FF6FA5;
+  --list-color-5: #7C5CFC;
+  --list-color-6: #4ECB71;
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
 
-  --shadow-card: 0 1px 2px rgba(26, 26, 26, 0.06), 0 1px 1px rgba(26, 26, 26, 0.04);
-  --shadow-card-hover: 0 4px 12px rgba(26, 26, 26, 0.10), 0 2px 4px rgba(26, 26, 26, 0.06);
+  --shadow-card: 0 2px 0 rgba(43, 38, 64, 0.06), 0 4px 10px rgba(43, 38, 64, 0.07);
+  --shadow-card-hover: 0 3px 0 rgba(43, 38, 64, 0.08), 0 10px 22px rgba(43, 38, 64, 0.14);
+  --shadow-list: 0 6px 18px rgba(43, 38, 64, 0.08);
+
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Paleta (tema escuro): aplicada quando <html data-theme="dark"> */
+/* Paleta (tema escuro): mesma personalidade colorida, em fundo profundo */
 [data-theme='dark'] {
-  --color-bg: #16181A;
-  --color-surface: #1F2225;
-  --color-surface-alt: #262A2E;
-  --color-text: #EDEDEA;
-  --color-text-muted: #9B9B95;
-  --color-border: #34383C;
+  --color-bg: #1B1730;
+  --color-surface: #261F40;
+  --color-surface-alt: #2D2650;
+  --color-text: #EFEBFC;
+  --color-text-muted: #B0A8D1;
+  --color-border: #3D3460;
 
-  --color-primary: #4D9A96;
-  --color-primary-hover: #5FB0AC;
-  --color-accent: #E5B94B;
+  --color-primary: #9C84FF;
+  --color-primary-hover: #B09DFF;
+  --color-accent: #FFD37A;
 
-  --color-danger: #E08177;
-  --color-danger-bg: #3A2422;
+  --color-danger: #F0828D;
+  --color-danger-bg: #3C2230;
 
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.2);
-  --shadow-card-hover: 0 4px 14px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --list-color-1: #FF9D80;
+  --list-color-2: #4DD6D1;
+  --list-color-3: #FFD37A;
+  --list-color-4: #FF8FBA;
+  --list-color-5: #A892FF;
+  --list-color-6: #6BDE8B;
+
+  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 3px 0 rgba(0, 0, 0, 0.3), 0 12px 26px rgba(0, 0, 0, 0.45);
+  --shadow-list: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 /* Transição suave ao alternar entre os temas */
@@ -95,6 +116,29 @@ textarea:focus-visible {
   height: 100vh;
   color: var(--color-text-muted);
   font-family: var(--font-body);
+}
+
+/* Animações reutilizáveis pelos componentes */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes grow-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.9) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
 }
 
 /* Respeita preferência de redução de movimento do usuário */
